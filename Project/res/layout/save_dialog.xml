@@ -11,7 +11,7 @@
 <!--     android:id="@+id/textView2" -->
 <!--     />     -->
 <EditText
-    android:layout_width="wrap_content"	
+    android:layout_width="300dp"	
     android:layout_height="wrap_content"
     android:id="@+id/editText1"
     android:hint="@string/save_dialog"

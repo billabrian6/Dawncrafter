@@ -29,7 +29,6 @@ public class NewBuildActivity extends Activity implements SaveDialog.Communicato
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_build);
-		//Log.d("Test", "Test");
 		WebView wv = (WebView) findViewById(R.id.webview);
 		wv.clearCache(true);
 		wv.getSettings().setJavaScriptEnabled(true);

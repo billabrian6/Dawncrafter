@@ -9,7 +9,7 @@
     <color name="Background_Color">#284173</color>
     <color name="Text_Color_White">#FFF</color>
     <string name="action_save">Save Build</string>
-    <string name="save_dialog">What is the name of your build?</string>
+    <string name="save_dialog">Build Name</string>
     <string name="cancel_save">Cancel</string>
     <string name="save">Save</string>
     <string name="build_cancel">Build Canceled</string>
