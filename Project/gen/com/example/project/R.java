@@ -40,11 +40,11 @@ public final class R {
         public static final int action_save=0x7f090008;
         public static final int action_settings=0x7f090007;
         public static final int cancel_save=0x7f090005;
+        public static final int editText1=0x7f090004;
         public static final int imageButton1=0x7f090001;
         public static final int imageButton2=0x7f090002;
         public static final int imageView1=0x7f090000;
         public static final int save=0x7f090006;
-        public static final int textView2=0x7f090004;
         public static final int webview=0x7f090003;
     }
     public static final class layout {
