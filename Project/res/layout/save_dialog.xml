@@ -2,38 +2,39 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-<TextView 
+<!-- <TextView  -->
+<!--     android:layout_width="wrap_content"	 -->
+<!--     android:layout_height="wrap_content" -->
+<!--     android:textAppearance="?android:attr/textAppearanceLarge" -->
+<!--     android:text="@string/save_dialog" -->
+<!--     android:layout_margin="16dp" -->
+<!--     android:id="@+id/textView2" -->
+<!--     />     -->
+<EditText
     android:layout_width="wrap_content"	
     android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceLarge"
-    android:text="@string/save_dialog"
+    android:id="@+id/editText1"
+    android:hint="@string/save_dialog"
     android:layout_margin="16dp"
-    android:id="@+id/textView2"
-    />    
-<!-- <ImageView  -->
-<!--     android:id="@+id/imageDialog" -->
-<!--     android:layout_width="wrap_content" -->
-<!--     android:layout_height="wrap_content" -->
-<!--     android:src="@drawable/legendary_progress"  -->
-<!--     android:layout_below="@+id/textView2" -->
-<!--     />     -->
-<Button 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/cancel_save"
-    android:id="@+id/cancel_save"
-    android:layout_below="@+id/textView2"
-    
+    android:layout_centerHorizontal="true"
     />
 
-<Button 
+<Button
+    android:id="@+id/cancel_save"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/save"
+    android:layout_alignBaseline="@+id/save"
+    android:layout_alignBottom="@+id/save"
+    android:layout_alignLeft="@+id/editText1"
+    android:layout_marginLeft="52dp"
+    android:text="@string/cancel_save" />
+
+<Button
     android:id="@+id/save"
-    android:layout_below="@+id/textView2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/editText1"
     android:layout_toRightOf="@+id/cancel_save"
-    />
-	
+    android:text="@string/save" />
 	
 </RelativeLayout>
