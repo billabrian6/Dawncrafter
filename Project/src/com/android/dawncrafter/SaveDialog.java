@@ -13,6 +13,7 @@ import com.example.project.R;
 
 public class SaveDialog extends DialogFragment implements View.OnClickListener{
 	//This is a git test.
+	//This is another git test.
 	Button cancel, save;
 	EditText text;
 	Communicator communicator;
