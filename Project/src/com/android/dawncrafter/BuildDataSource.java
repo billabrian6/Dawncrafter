@@ -1,12 +1,10 @@
 package com.android.dawncrafter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -19,17 +17,14 @@ public class BuildDataSource {
 	public BuildDataSource(Context context){
 		dbHelper = new MySqliteHelper(context);
 	}
-	public void open() throws SQLException{
-		database = dbHelper.getReadableDatabase();
-	}
 	public void close(){
 		dbHelper.close();
 	}
-	public Build createBuild(String id, String buildName, String buildUrl) {
+	public Build createBuild(String buildName, String buildUrl) {
+		database = dbHelper.getWritableDatabase();
 	    ContentValues values = new ContentValues();
-	    values.put(MySqliteHelper.BUILD_ID, id);
 	    values.put(MySqliteHelper.BUILD_NAME, buildName);
-	    values.put(MySqliteHelper.BUILD_ID, buildUrl);
+	    values.put(MySqliteHelper.BUILD_URL, buildUrl);
 
 	    long insertId = database.insert(MySqliteHelper.TABLE_NAME, null, values);
 	    Cursor cursor = database.query(MySqliteHelper.TABLE_NAME, allColumns, MySqliteHelper.BUILD_ID + " = " + insertId, null,
@@ -40,12 +35,14 @@ public class BuildDataSource {
 	    return newBuild;
 	  }
 	public void deleteBuild(Build build){
+		database = dbHelper.getWritableDatabase();
 		String id = build.getID();
 		Log.d("Delete from db", id);
 		database.delete(MySqliteHelper.TABLE_NAME, MySqliteHelper.BUILD_ID + " = " + id, null);
 	}
-	public List<Build> getAllBuilds(){
-		List<Build> builds = new ArrayList<Build>();
+	public ArrayList<Build> getAllBuilds(){
+		database = dbHelper.getReadableDatabase();
+		ArrayList<Build> builds = new ArrayList<Build>();
 		Cursor cursor = database.query(MySqliteHelper.TABLE_NAME, allColumns, null, null, null, null, null);
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()){
@@ -56,7 +53,6 @@ public class BuildDataSource {
 		cursor.close();
 		return builds;
 	}
-	
 	
 	private Build cursorToBuild(Cursor cursor){
 		Build build = new Build();

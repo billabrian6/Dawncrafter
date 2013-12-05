@@ -48,7 +48,6 @@ public class SaveDialog extends DialogFragment implements View.OnClickListener{
 				communicator.onDialogSave("Invalid build name.");
 			} else {
 				communicator.onBuildSave(saveName);
-				communicator.onDialogSave("Build Saved");
 			}
 			dismiss();
 		}

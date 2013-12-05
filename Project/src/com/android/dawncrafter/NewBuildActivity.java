@@ -27,6 +27,9 @@ public class NewBuildActivity extends Activity implements SaveDialog.Communicato
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		String url = getIntent().getStringExtra("url");
+		String name = getIntent().getStringExtra("name");
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_build);
 		WebView wv = (WebView) findViewById(R.id.webview);
@@ -35,9 +38,13 @@ public class NewBuildActivity extends Activity implements SaveDialog.Communicato
 		wv.addJavascriptInterface(new JavaScriptInterface(this),"Android");
 		wv.getSettings().setLoadWithOverviewMode(true);
 		wv.getSettings().setUseWideViewPort(true);
-		//wv.loadUrl("http://www.dawncrafter.com/");
-		
-		wv.loadUrl("http://www.dawncrafter.com/");
+
+		if (url != null) {
+			wv.loadUrl(url);
+			setTitle(name);
+		} else {
+			wv.loadUrl("http://www.dawncrafter.com/");
+		}
 		
 		//JavaScriptInterface js = new JavaScriptInterface(this);
 		//js.saveBuild("FUCK");

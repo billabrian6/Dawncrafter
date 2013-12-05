@@ -12,8 +12,8 @@ public class MySqliteHelper extends SQLiteOpenHelper{
 	public static final String DATABASE_NAME = "builds.db";
 	public static final String TABLE_NAME = "build";
 	public static final int DATABASE_VERSION = 1;
-	private static final String DATABASE_CREATE = "CREATE TABLE "+ TABLE_NAME + " ("+BUILD_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+BUILD_NAME+" VARCHAR(25),"
-			+ BUILD_URL +" VARCHAR(200);";
+	private static final String DATABASE_CREATE = "CREATE TABLE "+ TABLE_NAME + " ("+BUILD_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+BUILD_NAME+" VARCHAR(25), "
+			+ BUILD_URL +" VARCHAR(200));";
 	
 	public MySqliteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -21,7 +21,12 @@ public class MySqliteHelper extends SQLiteOpenHelper{
 	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		if (db == null) {
+			Log.d("test", "oh shit");
+		}
+		Log.d("test", DATABASE_CREATE);
 		db.execSQL(DATABASE_CREATE);
+		Log.d("test", "Made it");
 	}
 
 	@Override
