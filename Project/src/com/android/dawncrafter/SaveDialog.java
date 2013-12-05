@@ -1,7 +1,5 @@
 package com.android.dawncrafter;
 
-import com.example.project.R;
-
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
@@ -9,11 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.project.R;
 
 public class SaveDialog extends DialogFragment implements View.OnClickListener{
 	
 	Button cancel, save;
+	EditText text;
 	Communicator communicator;
+	EditText mEdit;
 	
 	@Override
 	public void onAttach(Activity activity){
@@ -24,11 +27,13 @@ public class SaveDialog extends DialogFragment implements View.OnClickListener{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
 		View view = inflater.inflate(R.layout.save_dialog, null);
+		text = (EditText) view.findViewById(R.id.editText1);
 		cancel = (Button) view.findViewById(R.id.cancel_save);
 		save = (Button) view.findViewById(R.id.save);
 		cancel.setOnClickListener(this);
 		save.setOnClickListener(this);
 		setCancelable(false);
+		
 		return view;
 	}
 	@Override
@@ -37,12 +42,19 @@ public class SaveDialog extends DialogFragment implements View.OnClickListener{
 			communicator.onDialogSave("Save Canceled");
 			dismiss();
 		}else{
-			communicator.onDialogSave("Build Saved");
+			String saveName = text.getText().toString();
+			if (saveName.equals("")) {
+				communicator.onDialogSave("Invalid build name.");
+			} else {
+				communicator.onBuildSave(saveName);
+				communicator.onDialogSave("Build Saved");
+			}
 			dismiss();
 		}
 		
 	}
 	interface Communicator{
 		public void onDialogSave(String message);
+		public void onBuildSave(String name);
 	}
 }

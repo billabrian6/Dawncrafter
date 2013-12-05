@@ -1,30 +1,29 @@
 package com.android.dawncrafter;
 
-import com.example.project.R;
-
-import android.os.Bundle;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Toast;
-import android.support.v4.app.NavUtils;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.os.Build;
+
+import com.example.project.R;
+
 
 public class NewBuildActivity extends Activity implements SaveDialog.Communicator {
-	public void saveBuild() {
-		showDialog(null);
-		
-		
-	}
 
 	@SuppressLint({ "JavascriptInterface", "SetJavaScriptEnabled" })
+	public void saveBuild() {
+		showDialog(null);
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,7 +36,7 @@ public class NewBuildActivity extends Activity implements SaveDialog.Communicato
 		wv.getSettings().setUseWideViewPort(true);
 		//wv.loadUrl("http://www.dawncrafter.com/");
 		
-		wv.loadUrl("http://www.dawncrafter.com/?shaper=Amarynth&shaperlevel=20&abilitylevels=5,5,5,3&loadout=Power&items=Life,Resillience,Will");
+		wv.loadUrl("http://www.dawncrafter.com/");
 		
 		//JavaScriptInterface js = new JavaScriptInterface(this);
 		//js.saveBuild("FUCK");
@@ -57,6 +56,7 @@ public class NewBuildActivity extends Activity implements SaveDialog.Communicato
 		SaveDialog dialog = new SaveDialog();
 		dialog.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
 		dialog.show(manager, "SaveDialog");
+		
 	}
 	@Override
 	public void onDialogSave(String message){
@@ -91,5 +91,11 @@ public class NewBuildActivity extends Activity implements SaveDialog.Communicato
 			return super.onOptionsItemSelected(item);
 		}
 
+	}
+	@Override
+	public void onBuildSave(String name) {
+		Log.d("Test", name);
+		WebView wv = (WebView) findViewById(R.id.webview);
+		wv.loadUrl("javascript:(function(){ saveBuild(); }())");
 	}
 }
