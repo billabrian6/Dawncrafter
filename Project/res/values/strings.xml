@@ -14,5 +14,11 @@
     <string name="save">Save</string>
     <string name="build_cancel">Build Canceled</string>
     <string name="build_save">Build Saved</string>
+    
+    <string name="build1">Empty</string>
+    <string name="build2">Empty</string>
+    <string name="build3">Empty</string>
+    <string name="build4">Empty</string>
+    <string name="build5">Empty</string>
 
 </resources>

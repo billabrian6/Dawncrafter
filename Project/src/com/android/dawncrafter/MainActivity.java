@@ -36,14 +36,22 @@ public class MainActivity extends Activity {
     }
     
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-    	menu.add(0,1,0,"Amarynth Build");
-    	menu.add(0,2,0,"Desecrator Build");
-    	menu.add(0,3,0,"Fenmore Build");
-    	menu.add(0,4,0,"Mikella Build");
+    	String build1 = getResources().getString(R.string.build1);
+    	String build2  = getResources().getString(R.string.build2);
+    	String build3 = getResources().getString(R.string.build3);
+    	String build4 = getResources().getString(R.string.build4);
+    	String build5 = getResources().getString(R.string.build5);
+
+    	menu.add(0,1,0,build1);
+    	menu.add(0,2,0,build2);
+    	menu.add(0,3,0,build3);
+    	menu.add(0,4,0,build4);
+    	menu.add(0,5,0,build5);
 	}
     
     public boolean onContextItemSelected(MenuItem item) {
-        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+        @SuppressWarnings("unused")
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
         if (item.getItemId() == 1) {
         	Log.d("SAVE1", "WOO");
             return true;

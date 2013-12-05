@@ -24,6 +24,7 @@ public class NewBuildActivity extends Activity implements SaveDialog.Communicato
 	public void saveBuild() {
 		showDialog(null);
 	}
+	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -94,7 +95,8 @@ public class NewBuildActivity extends Activity implements SaveDialog.Communicato
 	}
 	@Override
 	public void onBuildSave(String name) {
-		Log.d("Test", name);
+		Log.d("Test", name);	    
+		
 		WebView wv = (WebView) findViewById(R.id.webview);
 		wv.loadUrl("javascript:(function(){ saveBuild(); }())");
 	}
