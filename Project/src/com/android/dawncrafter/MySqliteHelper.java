@@ -13,8 +13,7 @@ public class MySqliteHelper extends SQLiteOpenHelper{
 	public static final String TABLE_NAME = "build";
 	public static final int DATABASE_VERSION = 1;
 	private static final String DATABASE_CREATE = "CREATE TABLE "+ TABLE_NAME + " ("+BUILD_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+BUILD_NAME+" VARCHAR(25),"
-			+ BUILD_URL +" VARCHAR(200),"
-			+"PRIMARY KEY (id));";
+			+ BUILD_URL +" VARCHAR(200);";
 	
 	public MySqliteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);

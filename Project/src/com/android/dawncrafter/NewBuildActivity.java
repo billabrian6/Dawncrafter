@@ -98,6 +98,6 @@ public class NewBuildActivity extends Activity implements SaveDialog.Communicato
 		Log.d("Test", name);	    
 		
 		WebView wv = (WebView) findViewById(R.id.webview);
-		wv.loadUrl("javascript:(function(){ saveBuild(); }())");
+		wv.loadUrl("javascript:(function(){ saveBuild('"+name+"'); }())");
 	}
 }

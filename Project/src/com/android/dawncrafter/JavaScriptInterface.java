@@ -16,9 +16,22 @@ public class JavaScriptInterface {
 	}
 	
 	@JavascriptInterface
-	public void saveBuild(String shaper, String shaperlevel, String abilitylevels, String loadout, String items){
-		//Save build here
-		Toast.makeText(mContext, "save test", Toast.LENGTH_SHORT).show();
+	public void saveBuild(String name, String shaper, String shaperlevel, String abilitylevels, String loadout, String items){
+		String url = "www.dawncrafter.com/?";
+		if (shaper == "") {
+			Toast.makeText(mContext, "ERROR: You must select a shaper to be able to save!", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
+		url += "shaper=" + shaper;
+		url += "&shaperlevel=" + shaperlevel;
+		url += "&abilitylevels=" + abilitylevels;
+		url += "&loadout=" + loadout;
+		url += "&items=" + items;
+		
+		BuildDataSource db = new BuildDataSource(mContext);
+		db.createBuild(null, name, url);
+		Toast.makeText(mContext, name + " was saved succesfully!", Toast.LENGTH_SHORT).show();
 	}
 	@JavascriptInterface
 	public void playBuySound() {
