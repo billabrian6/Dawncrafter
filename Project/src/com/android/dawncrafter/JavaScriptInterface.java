@@ -16,10 +16,9 @@ public class JavaScriptInterface {
 	}
 	
 	@JavascriptInterface
-	public void saveBuild(String toast){
+	public void saveBuild(String shaper, String shaperlevel, String abilitylevels, String loadout, String items){
 		//Save build here
-		Log.d("Test", "Test");
-		Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+		
 	}
 	@JavascriptInterface
 	public void playBuySound() {
