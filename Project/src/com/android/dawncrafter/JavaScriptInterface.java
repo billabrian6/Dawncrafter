@@ -2,24 +2,34 @@ package com.android.dawncrafter;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
 import com.example.project.R;
+//===============================================================================
+//Project    : Android: Dawncrafter Theorycrafting Application               	=
+//File Name  : JavaScriptInterface.java											=
+//File Type  : Class 															=
+//Authors    : Brian Green & Brandon Aikey										=
+//Date       : 12/5/2013														=
+//Description: Responsible for all communication with website					=
+//===============================================================================
 
 public class JavaScriptInterface {
 	Context mContext;
-	
-	JavaScriptInterface(Context c){
+
+	JavaScriptInterface(Context c) {
 		mContext = c;
 	}
-	
+
 	@JavascriptInterface
-	public void saveBuild(String name, String shaper, String shaperlevel, String abilitylevels, String loadout, String items){
+	public void saveBuild(String name, String shaper, String shaperlevel,
+			String abilitylevels, String loadout, String items) {
 		String url = "http://www.dawncrafter.com/?";
 		if (shaper.equals("")) {
-			Toast.makeText(mContext, "ERROR: You must select a shaper to be able to save!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(mContext,
+					"ERROR: You must select a shaper to be able to save!",
+					Toast.LENGTH_SHORT).show();
 			return;
 		}
 
@@ -28,21 +38,22 @@ public class JavaScriptInterface {
 		url += "&abilitylevels=" + abilitylevels;
 		url += "&loadout=" + loadout;
 		url += "&items=" + items;
-		
+
 		BuildDataSource db = new BuildDataSource(mContext);
 		db.createBuild(name, url);
-		Toast.makeText(mContext, name + " was saved succesfully!", Toast.LENGTH_SHORT).show();
+		Toast.makeText(mContext, name + " was saved succesfully!",
+				Toast.LENGTH_SHORT).show();
 	}
+
 	@JavascriptInterface
 	public void playBuySound() {
-		Log.d("HI", "Buy sound");
-		MediaPlayer mp = MediaPlayer.create(mContext, R.raw.buy); 
+		MediaPlayer mp = MediaPlayer.create(mContext, R.raw.buy);
 		mp.start();
 	}
+
 	@JavascriptInterface
 	public void playSellSound() {
-		Log.d("HI", "Sell sound");
-		MediaPlayer mp = MediaPlayer.create(mContext, R.raw.sell); 
+		MediaPlayer mp = MediaPlayer.create(mContext, R.raw.sell);
 		mp.start();
 	}
 }

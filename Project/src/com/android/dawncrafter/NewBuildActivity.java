@@ -8,7 +8,6 @@ import android.app.FragmentManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,26 +15,35 @@ import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.example.project.R;
+//===============================================================================
+//Project    : Android: Dawncrafter Theorycrafting Application               	=
+//File Name  : NewBuildActivity.java											=
+//File Type  : Activity														    =
+//Authors    : Brian Green & Brandon Aikey									    =
+//Date       : 12/5/2013														=
+//Description: This activity displays and handles the build screen	            =
+//===============================================================================
 
-
-public class NewBuildActivity extends Activity implements SaveDialog.Communicator {
+public class NewBuildActivity extends Activity implements
+		SaveDialog.Communicator {
 
 	@SuppressLint({ "JavascriptInterface", "SetJavaScriptEnabled" })
 	public void saveBuild() {
 		showDialog(null);
 	}
+
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		String url = getIntent().getStringExtra("url");
 		String name = getIntent().getStringExtra("name");
-		
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_build);
 		WebView wv = (WebView) findViewById(R.id.webview);
 		wv.clearCache(true);
 		wv.getSettings().setJavaScriptEnabled(true);
-		wv.addJavascriptInterface(new JavaScriptInterface(this),"Android");
+		wv.addJavascriptInterface(new JavaScriptInterface(this), "Android");
 		wv.getSettings().setLoadWithOverviewMode(true);
 		wv.getSettings().setUseWideViewPort(true);
 
@@ -45,34 +53,30 @@ public class NewBuildActivity extends Activity implements SaveDialog.Communicato
 		} else {
 			wv.loadUrl("http://www.dawncrafter.com/");
 		}
-		
-		//JavaScriptInterface js = new JavaScriptInterface(this);
-		//js.saveBuild("FUCK");
-		// Show the Up button in the action bar.
-		// setupActionBar();
+
 	}
-	public void onPause(){
+
+	public void onPause() {
 		super.onPause();
-		//This code should temporarily save all data to resume the last session
 	}
-	public void onResume(){
+
+	public void onResume() {
 		super.onResume();
-		//This code should reinitialize the app with all the temporary stored data
 	}
-	public void showDialog(View view){
+
+	public void showDialog(View view) {
 		FragmentManager manager = getFragmentManager();
 		SaveDialog dialog = new SaveDialog();
 		dialog.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
 		dialog.show(manager, "SaveDialog");
-		
+
 	}
+
 	@Override
-	public void onDialogSave(String message){
+	public void onDialogSave(String message) {
 		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 	}
-	/**
-	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 */
+
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -100,11 +104,10 @@ public class NewBuildActivity extends Activity implements SaveDialog.Communicato
 		}
 
 	}
+
 	@Override
 	public void onBuildSave(String name) {
-		Log.d("Test", name);	    
-		
 		WebView wv = (WebView) findViewById(R.id.webview);
-		wv.loadUrl("javascript:(function(){ saveBuild('"+name+"'); }())");
+		wv.loadUrl("javascript:(function(){ saveBuild('" + name + "'); }())");
 	}
 }

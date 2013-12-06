@@ -6,8 +6,10 @@
     <string name="new_build_button">New Build</string>
     <string name="new_build_address">http://www.dawncrafter.com/</string>
     <string name="title_activity_new_build">Create New Build</string>
+
     <color name="Background_Color">#284173</color>
     <color name="Text_Color_White">#FFF</color>
+
     <string name="action_save">Save Build</string>
     <string name="save_dialog">Build Name</string>
     <string name="cancel_save">Cancel</string>
@@ -19,6 +21,6 @@
     <string name="build_open">Build Opened</string>
     <string name="build_deleted">Build Deleted</string>
     <string name="edit_dialog">What would you like to do?</string>
-    
+    <string name="content_descrip">Description</string>
 
 </resources>

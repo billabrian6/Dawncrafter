@@ -10,22 +10,30 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.project.R;
+//===============================================================================
+//Project    : Android: Dawncrafter Theorycrafting Application               	=
+//File Name  : SaveDialog.java									        		=
+//File Type  : Fragment														    =
+//Authors    : Brian Green & Brandon Aikey									    =
+//Date       : 12/5/2013														=
+//Description: Fragment that displays save dialog					            =
+//===============================================================================
 
-public class SaveDialog extends DialogFragment implements View.OnClickListener{
-	//This is a git test.
-	//This is another git test.
+public class SaveDialog extends DialogFragment implements View.OnClickListener {
 	Button cancel, save;
 	EditText text;
 	Communicator communicator;
 	EditText mEdit;
-	
+
 	@Override
-	public void onAttach(Activity activity){
+	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		communicator = (Communicator) activity;
 	}
+
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 
 		View view = inflater.inflate(R.layout.save_dialog, null);
 		text = (EditText) view.findViewById(R.id.editText1);
@@ -34,15 +42,16 @@ public class SaveDialog extends DialogFragment implements View.OnClickListener{
 		cancel.setOnClickListener(this);
 		save.setOnClickListener(this);
 		setCancelable(false);
-		
+
 		return view;
 	}
+
 	@Override
 	public void onClick(View view) {
-		if(view.getId() == R.id.cancel_save){
+		if (view.getId() == R.id.cancel_save) {
 			communicator.onDialogSave("Save Canceled");
 			dismiss();
-		}else{
+		} else {
 			String saveName = text.getText().toString();
 			if (saveName.equals("")) {
 				communicator.onDialogSave("Invalid build name.");
@@ -51,10 +60,12 @@ public class SaveDialog extends DialogFragment implements View.OnClickListener{
 			}
 			dismiss();
 		}
-		
+
 	}
-	interface Communicator{
+
+	interface Communicator {
 		public void onDialogSave(String message);
+
 		public void onBuildSave(String name);
 	}
 }

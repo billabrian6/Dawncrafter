@@ -9,8 +9,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import com.example.project.R;
+//===============================================================================
+//Project    : Android: Dawncrafter Theorycrafting Application               	=
+//File Name  : EditDialog.java												    =
+//File Type  : Fragment														    =
+//Authors    : Brian Green & Brandon Aikey									    =
+//Date       : 12/5/2013														=
+//Description: Creates and handles a dialog for deleting and opening builds 	=
+//===============================================================================
 
-public class EditDialog extends DialogFragment implements View.OnClickListener{
+public class EditDialog extends DialogFragment implements View.OnClickListener {
 
 	Button open, delete;
 	EditText text;
@@ -19,12 +27,14 @@ public class EditDialog extends DialogFragment implements View.OnClickListener{
 	String buildname, buildurl;
 
 	@Override
-	public void onAttach(Activity activity){
+	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		communicator = (Communicator) activity;
 	}
+
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 		Bundle ofsticks = getArguments();
 		buildname = ofsticks.getString("name");
 		buildurl = ofsticks.getString("url");
@@ -36,18 +46,20 @@ public class EditDialog extends DialogFragment implements View.OnClickListener{
 		setCancelable(false);
 		return view;
 	}
+
 	@Override
 	public void onClick(View view) {
-		if(view.getId() == R.id.open){
+		if (view.getId() == R.id.open) {
 			communicator.onDialogSelect("open", buildname, buildurl);
 			dismiss();
-		}else{
+		} else {
 			communicator.onDialogSelect("delete", buildname, buildurl);
 			dismiss();
 		}
-		
+
 	}
-	interface Communicator{
+
+	interface Communicator {
 		public void onDialogSelect(String option, String name, String url);
 	}
 }

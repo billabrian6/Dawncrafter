@@ -9,7 +9,7 @@
         android:layout_width="300dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:contentDescription=""
+        android:contentDescription="@string/content_descrip"
         android:src="@drawable/logo" />
 
     <ImageButton
@@ -17,19 +17,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="newBuild"
-        android:background="@null"
         android:layout_marginTop="50dp"
+        android:background="@null"
+        android:contentDescription="@string/content_descrip"
+        android:onClick="newBuild"
         android:src="@drawable/newbuild" />
-    
+
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:onClick="showSaves"
-        android:background="@null"
         android:layout_marginTop="20dp"
+        android:background="@null"
+        android:contentDescription="@string/content_descrip"
+        android:onClick="showSaves"
         android:src="@drawable/loadbuild" />
 
 </LinearLayout>
