@@ -22,6 +22,7 @@ public class JavaScriptInterface {
 		mContext = c;
 	}
 
+	//Method to save the build displayed on the screen
 	@JavascriptInterface
 	public void saveBuild(String name, String shaper, String shaperlevel,
 			String abilitylevels, String loadout, String items) {
@@ -44,13 +45,15 @@ public class JavaScriptInterface {
 		Toast.makeText(mContext, name + " was saved succesfully!",
 				Toast.LENGTH_SHORT).show();
 	}
-
+	
+	//Method plays a sound when buying an item
 	@JavascriptInterface
 	public void playBuySound() {
 		MediaPlayer mp = MediaPlayer.create(mContext, R.raw.buy);
 		mp.start();
 	}
 
+	//Method plays a sound when selling an item
 	@JavascriptInterface
 	public void playSellSound() {
 		MediaPlayer mp = MediaPlayer.create(mContext, R.raw.sell);

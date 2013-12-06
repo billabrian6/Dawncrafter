@@ -24,12 +24,14 @@ import com.example.project.R;
 
 public class MainActivity extends Activity implements EditDialog.Communicator {
 	private ArrayList<Build> builds;
-
+	
+	//Method passes intent to the NewBuildActivity and starts it
 	public void newBuild(View view) {
 		Intent intent = new Intent(this, NewBuildActivity.class);
 		startActivity(intent);
 	}
 
+	//Method to instantiate and pass data to the EditDialog fragment
 	public void editDialog(String name, String url) {
 		FragmentManager manager = getFragmentManager();
 		EditDialog dialog = new EditDialog();
@@ -40,7 +42,8 @@ public class MainActivity extends Activity implements EditDialog.Communicator {
 		dialog.setStyle(DialogFragment.STYLE_NO_TITLE, 0);
 		dialog.show(manager, "EditDialog");
 	}
-
+	
+	//Method to load a previously saved build
 	public void loadBuild(String name, String url) {
 		Intent intent = new Intent(this, NewBuildActivity.class);
 		intent.putExtra("name", name);
@@ -48,6 +51,7 @@ public class MainActivity extends Activity implements EditDialog.Communicator {
 		startActivity(intent);
 	}
 
+	//Method to handle menu items in the EditDialog fragment
 	public void onDialogSelect(String option, String name, String url) {
 		if (option.equals("open")) {
 			loadBuild(name, url);
@@ -58,19 +62,20 @@ public class MainActivity extends Activity implements EditDialog.Communicator {
 	}
 
 	ImageButton button;
-
+	//Constructor for MainActivity and registers buttons for context menu
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		button = (ImageButton) findViewById(R.id.imageButton2);
 		registerForContextMenu(button);
 	}
-
+	
+	//Method passes the view and opens the context menu
 	public void showSaves(View v) {
 		openContextMenu(v);
 	}
 
+	//Method creates context menu
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		BuildDataSource db = new BuildDataSource(getApplicationContext());
@@ -81,6 +86,7 @@ public class MainActivity extends Activity implements EditDialog.Communicator {
 		}
 	}
 
+	//Method handles selection of items in context menu
 	public boolean onContextItemSelected(MenuItem item) {
 		for (int i = 0; i < builds.size(); i++) {
 			if (builds.get(i).getBuildName().equals(item.getTitle())) {
@@ -92,6 +98,7 @@ public class MainActivity extends Activity implements EditDialog.Communicator {
 		return false;
 	}
 
+	//Method creates option menu that is unused
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);

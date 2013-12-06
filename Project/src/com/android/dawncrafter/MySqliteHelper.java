@@ -21,12 +21,14 @@ public class MySqliteHelper extends SQLiteOpenHelper {
 	public static final int DATABASE_VERSION = 1;
 	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_NAME
 			+ " (" + BUILD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ BUILD_NAME + " VARCHAR(25), " + BUILD_URL + " VARCHAR(200));";
+			+ BUILD_NAME + " VARCHAR(25), " + BUILD_URL + " VARCHAR(255));";
 
+	//Constructor
 	public MySqliteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
-
+	
+	//Method creates the database
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		if (db == null) {
@@ -34,6 +36,7 @@ public class MySqliteHelper extends SQLiteOpenHelper {
 		db.execSQL(DATABASE_CREATE);
 	}
 
+	//Method to drop
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("DROP TABLE IF EXISTS build");

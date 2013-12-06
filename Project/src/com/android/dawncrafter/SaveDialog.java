@@ -25,12 +25,14 @@ public class SaveDialog extends DialogFragment implements View.OnClickListener {
 	Communicator communicator;
 	EditText mEdit;
 
+	//Method casts activity as a communicator
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		communicator = (Communicator) activity;
 	}
 
+	//Method inflates view and unpacks passed data
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class SaveDialog extends DialogFragment implements View.OnClickListener {
 		return view;
 	}
 
+	//Method handles buttons clicks while saving or canceling save of build
 	@Override
 	public void onClick(View view) {
 		if (view.getId() == R.id.cancel_save) {
@@ -62,7 +65,8 @@ public class SaveDialog extends DialogFragment implements View.OnClickListener {
 		}
 
 	}
-
+	
+	//Interface allows a message to be sent back to the activity
 	interface Communicator {
 		public void onDialogSave(String message);
 

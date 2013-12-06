@@ -26,12 +26,14 @@ public class EditDialog extends DialogFragment implements View.OnClickListener {
 	EditText mEdit;
 	String buildname, buildurl;
 
+	//Method to cast activity as a communicator
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		communicator = (Communicator) activity;
 	}
 
+	//Constructor that inflates the view and passes data to this class
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -46,7 +48,8 @@ public class EditDialog extends DialogFragment implements View.OnClickListener {
 		setCancelable(false);
 		return view;
 	}
-
+	
+	//Method handles clicks for open and delete when managing builds
 	@Override
 	public void onClick(View view) {
 		if (view.getId() == R.id.open) {
@@ -58,7 +61,7 @@ public class EditDialog extends DialogFragment implements View.OnClickListener {
 		}
 
 	}
-
+	//Interface to pass a message back to the activity
 	interface Communicator {
 		public void onDialogSelect(String option, String name, String url);
 	}

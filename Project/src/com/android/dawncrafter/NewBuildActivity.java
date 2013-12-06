@@ -26,18 +26,19 @@ import com.example.project.R;
 
 public class NewBuildActivity extends Activity implements
 		SaveDialog.Communicator {
-
+	
+	//Method calls to show the save Dialog fragment
 	@SuppressLint({ "JavascriptInterface", "SetJavaScriptEnabled" })
 	public void saveBuild() {
 		showDialog(null);
 	}
 
+	//Constructor starts the webiew and enables javascript interface
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		String url = getIntent().getStringExtra("url");
 		String name = getIntent().getStringExtra("name");
-
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_build);
 		WebView wv = (WebView) findViewById(R.id.webview);
@@ -55,15 +56,18 @@ public class NewBuildActivity extends Activity implements
 		}
 
 	}
-
+	
+	//Method onPause will be used in future development
 	public void onPause() {
 		super.onPause();
 	}
 
+	//Method onResume will be used in future development
 	public void onResume() {
 		super.onResume();
 	}
 
+	//Method showDialog instantiates SaveDialog fragment and displays it
 	public void showDialog(View view) {
 		FragmentManager manager = getFragmentManager();
 		SaveDialog dialog = new SaveDialog();
@@ -72,11 +76,13 @@ public class NewBuildActivity extends Activity implements
 
 	}
 
+	//Method displays a toast message to let the user know the build was saved
 	@Override
 	public void onDialogSave(String message) {
 		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 	}
-
+	
+	//Method that sets up the action bar
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private void setupActionBar() {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -84,12 +90,14 @@ public class NewBuildActivity extends Activity implements
 		}
 	}
 
+	//Method inflates the options menu
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.new_build, menu);
 		return true;
 	}
-
+	
+	//Method handles selection of items in the options menu
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -104,7 +112,8 @@ public class NewBuildActivity extends Activity implements
 		}
 
 	}
-
+	
+	//Method loads saved builds to the webview
 	@Override
 	public void onBuildSave(String name) {
 		WebView wv = (WebView) findViewById(R.id.webview);

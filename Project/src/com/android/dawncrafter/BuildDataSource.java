@@ -21,14 +21,17 @@ public class BuildDataSource {
 	private String[] allColumns = { MySqliteHelper.BUILD_ID,
 			MySqliteHelper.BUILD_NAME, MySqliteHelper.BUILD_URL };
 
-	public BuildDataSource(Context context) {
+	//Constructor
+	public BuildDataSource(Context context) {  
 		dbHelper = new MySqliteHelper(context);
 	}
-
+	
+	//Method to close the database
 	public void close() {
 		dbHelper.close();
 	}
-
+	
+	//Method that inserts build values into the database
 	public Build createBuild(String buildName, String buildUrl) {
 		database = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
@@ -45,13 +48,15 @@ public class BuildDataSource {
 		cursor.close();
 		return newBuild;
 	}
-
+	
+	//Method that deletes build values from the database
 	public void deleteBuild(String buildName) {
 		database = dbHelper.getWritableDatabase();
 		database.delete(MySqliteHelper.TABLE_NAME, MySqliteHelper.BUILD_NAME
 				+ " = ?", new String[] { buildName });
 	}
-
+	
+	//Method that queries all data from the database
 	public ArrayList<Build> getAllBuilds() {
 		database = dbHelper.getReadableDatabase();
 		ArrayList<Build> builds = new ArrayList<Build>();
@@ -66,7 +71,8 @@ public class BuildDataSource {
 		cursor.close();
 		return builds;
 	}
-
+	
+	//Method to create build object
 	private Build cursorToBuild(Cursor cursor) {
 		Build build = new Build();
 		build.setID(cursor.getString(0));
