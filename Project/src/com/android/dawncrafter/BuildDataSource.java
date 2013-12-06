@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 public class BuildDataSource {
 	private SQLiteDatabase database;
@@ -34,12 +33,11 @@ public class BuildDataSource {
 	    cursor.close();
 	    return newBuild;
 	  }
-	public void deleteBuild(Build build){
+	public void deleteBuild(String buildName){
 		database = dbHelper.getWritableDatabase();
-		String id = build.getID();
-		Log.d("Delete from db", id);
-		database.delete(MySqliteHelper.TABLE_NAME, MySqliteHelper.BUILD_ID + " = " + id, null);
+		database.delete(MySqliteHelper.TABLE_NAME, MySqliteHelper.BUILD_NAME + " = ?", new String[] {buildName});
 	}
+
 	public ArrayList<Build> getAllBuilds(){
 		database = dbHelper.getReadableDatabase();
 		ArrayList<Build> builds = new ArrayList<Build>();

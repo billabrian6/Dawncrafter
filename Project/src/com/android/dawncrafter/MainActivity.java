@@ -40,10 +40,12 @@ public class MainActivity extends Activity implements EditDialog.Communicator{
 		startActivity(intent);
 	}
 	public void onDialogSelect(String option, String name, String url) {
+		String[] nameArray = {name};
 		if (option.equals("open")) {
 			loadBuild(name, url);
 		} else {
-			// Delete from sql db
+			BuildDataSource db = new BuildDataSource(getApplicationContext());
+			db.deleteBuild(name);
 		}
 	}
     
