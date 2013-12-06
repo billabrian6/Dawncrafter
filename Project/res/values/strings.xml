@@ -14,11 +14,11 @@
     <string name="save">Save</string>
     <string name="build_cancel">Build Canceled</string>
     <string name="build_save">Build Saved</string>
+    <string name="open">Open</string>
+    <string name="delete">Delete</string>
+    <string name="build_open">Build Opened</string>
+    <string name="build_deleted">Build Deleted</string>
+    <string name="edit_dialog">What would you like to do?</string>
     
-    <string name="build1">Empty</string>
-    <string name="build2">Empty</string>
-    <string name="build3">Empty</string>
-    <string name="build4">Empty</string>
-    <string name="build5">Empty</string>
 
 </resources>
