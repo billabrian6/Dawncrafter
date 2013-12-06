@@ -30,7 +30,7 @@ public class JavaScriptInterface {
 		if (shaper.equals("")) {
 			Toast.makeText(mContext,
 					"ERROR: You must select a shaper to be able to save!",
-					Toast.LENGTH_SHORT).show();
+					Toast.LENGTH_LONG).show();
 			return;
 		}
 

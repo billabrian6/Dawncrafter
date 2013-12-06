@@ -58,7 +58,10 @@ public class SaveDialog extends DialogFragment implements View.OnClickListener {
 			String saveName = text.getText().toString();
 			if (saveName.equals("")) {
 				communicator.onDialogSave("Invalid build name.");
-			} else {
+			}else if(saveName.length() > 25){
+				communicator.onDialogSave("Invalid name length (25 character max)");
+			}
+			else {
 				communicator.onBuildSave(saveName);
 			}
 			dismiss();

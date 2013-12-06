@@ -79,7 +79,7 @@ public class NewBuildActivity extends Activity implements
 	//Method displays a toast message to let the user know the build was saved
 	@Override
 	public void onDialogSave(String message) {
-		Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 	}
 	
 	//Method that sets up the action bar
